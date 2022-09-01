@@ -1,0 +1,11 @@
+pull_request_rules:
+  - name: Backport to stable
+    conditions:
+      - "base=master"
+      - "label=backport: 1.2"
+    actions:
+      backport:
+        branches:
+          - "1.2"
+        title: "[1.2] {{ title }}"
+        body: "Backport of #{{number}} to `{{ destination_branch }}` branch."
