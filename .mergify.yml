@@ -1,3 +1,10 @@
+queue_rules:
+  - name: "default"
+    conditions: []
+
+  - name: "1_2"
+    conditions: []
+
 pull_request_rules:
   - name: Backport to stable
     conditions:
@@ -9,3 +16,30 @@ pull_request_rules:
           - "1.2"
         title: "[1.2] {{ title }}"
         body: "Backport of #{{number}} to `{{ destination_branch }}` branch."
+        labels: ["backport", "mergeable"]
+
+  - name: Merge queue
+    conditions:
+      - "base=master"
+      - "label=mergeable"
+      - "#approved-reviews-by>=1"
+    actions:
+      queue:
+        name: "default"
+
+  - name: 1.2 branch merge queue
+    conditions:
+      - "base=1.2"
+      - "label=mergeable"
+      - "#approved-reviews-by>=1"
+    actions:
+      queue:
+        name: "1_2"
+
+  - name: Automatic approval of 1.2 branch backports
+    conditions:
+      - "label=backport"
+    actions:
+      review:
+        type: APPROVE
+        message: Automatically approving 1.2 branch backports
