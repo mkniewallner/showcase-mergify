@@ -19,7 +19,7 @@ First off, thanks for taking the time to contribute!
 
 The following is a set of guidelines for contributing to Poetry on GitHub. These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
 
-#### Table of contents
+#### Table of contents update
 
 [How to contribute](#how-to-contribute)
 
